@@ -25,15 +25,6 @@
       "fileName": "Birth_Record_Digitization_Form.pdf",
       "fileUrl": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
       "uploadDate": "2026-09-26"
-    },
-    {
-      "id": "doc_204",
-      "title": "Self-Declaration Format for Local Residence & Identity Authentication",
-      "category": "General Administration",
-      "description": "Standard bilingual self-declaration affidavit format accepted across state administrative offices for residential status and identity verification.",
-      "fileName": "Residential_Self_Declaration_Format.pdf",
-      "fileUrl": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
-      "uploadDate": "2026-09-24"
     }
   ]
 }
