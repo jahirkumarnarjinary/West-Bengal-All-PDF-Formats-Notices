@@ -1,0 +1,57 @@
+{
+  "ticker": "Welcome to West Bengal Official PDF Formats & Public Notices Archive. All official standardized application forms, Panchayat verification models, and departmental circulars are available for direct public download.",
+  "notices": [
+    {
+      "id": "not_101",
+      "title": "Public Advisory: Mandatory Use of Standardized A4 Verification Formats for Gram Panchayat Digitization",
+      "date": "2026-09-28",
+      "fileUrl": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+      "fileName": "Panchayat_Digitization_Advisory_2026.pdf"
+    },
+    {
+      "id": "not_102",
+      "title": "Notification Regarding Streamlined Land NOC Submission Guidelines for Commercial & Trade Registration",
+      "date": "2026-09-25",
+      "fileUrl": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+      "fileName": "Revenue_Trade_NOC_Notice.pdf"
+    }
+  ],
+  "documents": [
+    {
+      "id": "doc_201",
+      "title": "Gram Panchayat Certificate Verification Application Format",
+      "category": "Panchayat & Rural",
+      "description": "Standardized single-page A4 application model required for document validation, birth/residential record verification, and official Panchayat office digital submissions.",
+      "fileName": "Panchayat_Verification_Application.pdf",
+      "fileUrl": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+      "uploadDate": "2026-09-28"
+    },
+    {
+      "id": "doc_202",
+      "title": "Commercial Business & Trade Registration Property Owner NOC Format",
+      "category": "Commercial & Revenue",
+      "description": "Official legal declaration and No-Objection Certificate (NOC) format by landlord/property owner for new trade license and commercial address registrations.",
+      "fileName": "Property_Owner_Trade_NOC_Format.pdf",
+      "fileUrl": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+      "uploadDate": "2026-09-27"
+    },
+    {
+      "id": "doc_203",
+      "title": "Birth Certificate Digitization & Record Correction Request Form",
+      "category": "Certificates & Verification",
+      "description": "Prescribed application format for updating manual municipal/panchayat birth registers into the centralized digital database system with required annexures.",
+      "fileName": "Birth_Record_Digitization_Form.pdf",
+      "fileUrl": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+      "uploadDate": "2026-09-26"
+    },
+    {
+      "id": "doc_204",
+      "title": "Self-Declaration Format for Local Residence & Identity Authentication",
+      "category": "General Administration",
+      "description": "Standard bilingual self-declaration affidavit format accepted across state administrative offices for residential status and identity verification.",
+      "fileName": "Residential_Self_Declaration_Format.pdf",
+      "fileUrl": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+      "uploadDate": "2026-09-24"
+    }
+  ]
+}
