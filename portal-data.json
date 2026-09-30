@@ -2,13 +2,6 @@
   "ticker": "Welcome to West Bengal Official PDF Formats & Public Notices Archive. All official standardized application forms, Panchayat verification models, and departmental circulars are available for direct public download.",
   "notices": [
     {
-      "id": "not_101",
-      "title": "Public Advisory: Mandatory Use of Standardized A4 Verification Formats for Gram Panchayat Digitization",
-      "date": "2026-09-28",
-      "fileUrl": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
-      "fileName": "Panchayat_Digitization_Advisory_2026.pdf"
-    },
-    {
       "id": "not_102",
       "title": "Notification Regarding Streamlined Land NOC Submission Guidelines for Commercial & Trade Registration",
       "date": "2026-09-25",
