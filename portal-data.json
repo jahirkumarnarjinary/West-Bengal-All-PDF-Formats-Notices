@@ -18,15 +18,6 @@
   ],
   "documents": [
     {
-      "id": "doc_201",
-      "title": "Gram Panchayat Certificate Verification Application Format",
-      "category": "Panchayat & Rural",
-      "description": "Standardized single-page A4 application model required for document validation, birth/residential record verification, and official Panchayat office digital submissions.",
-      "fileName": "Panchayat_Verification_Application.pdf",
-      "fileUrl": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
-      "uploadDate": "2026-09-28"
-    },
-    {
       "id": "doc_202",
       "title": "Commercial Business & Trade Registration Property Owner NOC Format",
       "category": "Commercial & Revenue",
