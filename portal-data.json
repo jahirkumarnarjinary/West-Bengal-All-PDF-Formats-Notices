@@ -16,15 +16,5 @@
       "fileName": "Revenue_Trade_NOC_Notice.pdf"
     }
   ],
-  "documents": [
-    {
-      "id": "doc_203",
-      "title": "Birth Certificate Digitization & Record Correction Request Form",
-      "category": "Certificates & Verification",
-      "description": "Prescribed application format for updating manual municipal/panchayat birth registers into the centralized digital database system with required annexures.",
-      "fileName": "Birth_Record_Digitization_Form.pdf",
-      "fileUrl": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
-      "uploadDate": "2026-09-26"
-    }
-  ]
+  "documents": []
 }
