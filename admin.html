@@ -14,7 +14,7 @@
     .glass { background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(16px); }
   </style>
 </head>
-<body class="bg-[#070b12] text-slate-100 min-h-screen p-4 sm:p-6">
+<body class="bg-[#070b12] text-slate-100 min-h-screen p-4 sm:p-6 selection:bg-indigo-600 selection:text-white">
 
   <!-- 1. LOGIN SCREEN -->
   <div id="authScreen" class="max-w-md mx-auto mt-14 glass border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl">
@@ -23,7 +23,7 @@
         <i class="fa-solid fa-lock text-xl text-white"></i>
       </div>
       <h2 class="text-xl font-bold text-white">Administrator Access</h2>
-      <p class="text-xs text-slate-400 mt-1">West Bengal PDF Formats Management Engine</p>
+      <p class="text-xs text-slate-400 mt-1">West Bengal Official PDF Formats Management Engine</p>
     </div>
 
     <form onsubmit="handleLogin(event)" class="space-y-4">
@@ -39,20 +39,25 @@
       </div>
       <div>
         <label class="text-xs font-semibold text-slate-300">Enter Password</label>
-        <input 
-          id="inPassword" 
-          type="password" 
-          placeholder="Enter Password" 
-          required 
-          class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-indigo-500 mt-1"
-        />
+        <div class="relative mt-1">
+          <input 
+            id="inPassword" 
+            type="password" 
+            placeholder="Enter Password" 
+            required 
+            class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 pr-10 text-xs text-white focus:outline-none focus:border-indigo-500"
+          />
+          <button type="button" onclick="togglePasswordVisibility()" class="absolute right-3 top-2.5 text-slate-400">
+            <i id="eyeIcon" class="fa-solid fa-eye text-xs"></i>
+          </button>
+        </div>
       </div>
       <div>
         <label class="text-xs font-semibold text-slate-300">GitHub Access Token (starts with ghp_)</label>
         <input 
           id="inToken" 
           type="password" 
-          placeholder="Enter GitHub Token for sync" 
+          placeholder="ghp_xxxxxxxxxxxx" 
           required 
           class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-indigo-500 mt-1"
         />
@@ -72,15 +77,15 @@
   </div>
 
   <!-- 2. DASHBOARD VIEW -->
-  <div id="dashScreen" class="max-w-4xl mx-auto hidden space-y-6">
+  <div id="dashScreen" class="max-w-5xl mx-auto hidden space-y-6">
     <header class="glass border border-slate-800 p-4 sm:p-5 rounded-2xl flex items-center justify-between">
       <div class="flex items-center space-x-3">
         <span class="h-3 w-3 rounded-full bg-emerald-400 animate-pulse"></span>
-        <h1 class="text-sm sm:text-base font-bold text-white">Administrative Portal Controller</h1>
+        <h1 class="text-sm sm:text-base font-bold text-white uppercase">WB Administrative Portal Controller</h1>
       </div>
       <div class="flex items-center gap-2">
         <a href="index.html" target="_blank" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-xs rounded-xl font-medium transition text-slate-300">
-          Open Portal
+          Open Live Portal
         </a>
         <button onclick="logoutAdmin()" class="px-3 py-1.5 bg-red-600/20 text-red-400 hover:bg-red-600 hover:text-white border border-red-500/30 text-xs rounded-xl font-medium transition">
           Sign Out
@@ -106,83 +111,191 @@
       </div>
     </div>
 
-    <!-- SECTION B: UPLOAD OFFICIAL PDF NOTICE -->
+    <!-- SECTION B: UPLOAD OFFICIAL NOTICE -->
     <div class="glass border border-slate-800 p-5 rounded-2xl">
       <h2 class="text-xs font-bold text-white uppercase tracking-wider mb-4 flex items-center gap-2">
-        <i class="fa-solid fa-file-circle-plus text-amber-400"></i> Publish Departmental Notice (PDF)
+        <i class="fa-solid fa-file-circle-plus text-amber-400"></i> Publish Official WB Departmental Circular (PDF)
       </h2>
-      <form onsubmit="submitNotice(event)" class="space-y-3">
+      <form onsubmit="submitNotice(event)" class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
         <input 
           id="noticeTitle" 
           type="text" 
-          placeholder="Notice Subject / Headline (e.g. Schedule for Digitization 2026)" 
+          placeholder="Notice Subject / Circular Title" 
           required 
-          class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-xs focus:outline-none focus:border-indigo-500"
+          class="sm:col-span-3 bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-white focus:outline-none focus:border-indigo-500"
         />
+        
+        <!-- Notice Dept Dropdown -->
+        <select id="noticeDept" required class="bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-slate-200">
+          <option value="Panchayat & Rural Development (WBPRD)">Panchayat & Rural Development</option>
+          <option value="Finance Department, Govt. of WB">Finance Department</option>
+          <option value="Health & Family Welfare">Health & Family Welfare</option>
+          <option value="Home & Hill Affairs">Home & Hill Affairs</option>
+          <option value="Land & Land Reforms Directorate">Land & Land Reforms</option>
+          <option value="Backward Classes Welfare Dept">Backward Classes Welfare</option>
+        </select>
+
+        <!-- Notice District Dropdown -->
+        <select id="noticeDistrict" required class="bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-slate-200">
+          <option value="All Districts">All Districts (State-Wide)</option>
+          <option value="Alipurduar">Alipurduar</option>
+          <option value="Jalpaiguri">Jalpaiguri</option>
+          <option value="Cooch Behar">Cooch Behar</option>
+          <option value="Darjeeling">Darjeeling</option>
+          <option value="Kalimpong">Kalimpong</option>
+          <option value="Uttar Dinajpur">Uttar Dinajpur</option>
+          <option value="Dakshin Dinajpur">Dakshin Dinajpur</option>
+          <option value="Malda">Malda</option>
+          <option value="Murshidabad">Murshidabad</option>
+          <option value="Nadia">Nadia</option>
+          <option value="North 24 Parganas">North 24 Parganas</option>
+          <option value="South 24 Parganas">South 24 Parganas</option>
+          <option value="Howrah">Howrah</option>
+          <option value="Hooghly">Hooghly</option>
+          <option value="Purba Medinipur">Purba Medinipur</option>
+          <option value="Paschim Medinipur">Paschim Medinipur</option>
+          <option value="Jhargram">Jhargram</option>
+          <option value="Purulia">Purulia</option>
+          <option value="Bankura">Bankura</option>
+          <option value="Purba Bardhaman">Purba Bardhaman</option>
+          <option value="Paschim Bardhaman">Paschim Bardhaman</option>
+          <option value="Birbhum">Birbhum</option>
+          <option value="Kolkata">Kolkata</option>
+        </select>
+
         <div>
-          <label class="text-[10px] text-slate-400 block mb-1">Select Notice PDF File</label>
           <input 
             id="noticeFile" 
             type="file" 
             accept="application/pdf" 
-            class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2 text-xs text-slate-400"
+            class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2 text-slate-400"
           />
         </div>
-        <button type="submit" id="btnNotice" class="bg-amber-600 hover:bg-amber-500 text-white font-bold px-5 py-2.5 rounded-xl text-xs transition">
-          Publish Notice
+
+        <button type="submit" id="btnNotice" class="sm:col-span-3 bg-amber-600 hover:bg-amber-500 text-white font-bold py-2.5 rounded-xl transition">
+          Publish Official Notice
         </button>
       </form>
 
       <!-- Manage Notices -->
       <div class="mt-5 pt-4 border-t border-slate-800">
-        <h3 class="text-[11px] font-bold text-slate-400 uppercase mb-2">Active Notices (Delete Option)</h3>
+        <h3 class="text-[11px] font-bold text-slate-400 uppercase mb-2">Active Circulars (Delete Option)</h3>
         <div id="adminNoticesList" class="space-y-2"></div>
       </div>
     </div>
 
-    <!-- SECTION C: UPLOAD IMPORTANT PDF FORMAT -->
+    <!-- SECTION C: UPLOAD VERIFIED PDF FORMAT WITH ALL DROPDOWNS -->
     <div class="glass border border-slate-800 p-5 rounded-2xl">
       <h2 class="text-xs font-bold text-white uppercase tracking-wider mb-4 flex items-center gap-2">
-        <i class="fa-solid fa-cloud-arrow-up text-emerald-400"></i> Upload Important PDF Format
+        <i class="fa-solid fa-cloud-arrow-up text-emerald-400"></i> Upload Verified PDF Legal/Application Format
       </h2>
-      <form onsubmit="submitDocument(event)" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <form onsubmit="submitDocument(event)" class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
         <input 
           id="docTitle" 
           type="text" 
           placeholder="Format Title (e.g. Gram Panchayat Verification Application)" 
           required 
-          class="bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-xs focus:outline-none focus:border-indigo-500 sm:col-span-2"
+          class="sm:col-span-3 bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-white focus:outline-none focus:border-indigo-500"
         />
-        <select 
-          id="docCategory" 
-          required 
-          class="bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-xs focus:outline-none focus:border-indigo-500"
-        >
-          <option value="Panchayat & Rural">Panchayat & Rural</option>
-          <option value="Commercial & Revenue">Commercial & Revenue</option>
-          <option value="Certificates & Verification">Certificates & Verification</option>
-          <option value="General Administration">General Administration</option>
-        </select>
-        
+
+        <!-- Dropdown A: Category -->
         <div>
+          <label class="text-[10px] text-slate-400 block mb-1">Select Category</label>
+          <select id="docCategory" required class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-slate-200">
+            <option value="Panchayat & Rural">Panchayat & Rural</option>
+            <option value="Commercial & Revenue">Commercial & Revenue</option>
+            <option value="Certificates & Verification">Certificates & Verification</option>
+            <option value="Land & Property">Land & Property</option>
+            <option value="General Administration">General Administration</option>
+          </select>
+        </div>
+
+        <!-- Dropdown B: Department -->
+        <div>
+          <label class="text-[10px] text-slate-400 block mb-1">Issuing Department</label>
+          <select id="docDept" required class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-slate-200">
+            <option value="Panchayat & Rural Development">Panchayat & Rural Development</option>
+            <option value="Commercial Taxes & Revenue">Commercial Taxes & Revenue</option>
+            <option value="Health & Municipal Affairs">Health & Municipal Affairs</option>
+            <option value="Home & Administrative Reforms">Home & Administrative Reforms</option>
+            <option value="Land & Land Reforms">Land & Land Reforms</option>
+          </select>
+        </div>
+
+        <!-- Dropdown C: District -->
+        <div>
+          <label class="text-[10px] text-slate-400 block mb-1">Applicable District</label>
+          <select id="docDistrict" required class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-slate-200">
+            <option value="All Districts">All Districts (State-Wide)</option>
+            <option value="Alipurduar">Alipurduar</option>
+            <option value="Jalpaiguri">Jalpaiguri</option>
+            <option value="Cooch Behar">Cooch Behar</option>
+            <option value="Darjeeling">Darjeeling</option>
+            <option value="Kalimpong">Kalimpong</option>
+            <option value="Uttar Dinajpur">Uttar Dinajpur</option>
+            <option value="Dakshin Dinajpur">Dakshin Dinajpur</option>
+            <option value="Malda">Malda</option>
+            <option value="Murshidabad">Murshidabad</option>
+            <option value="Nadia">Nadia</option>
+            <option value="North 24 Parganas">North 24 Parganas</option>
+            <option value="South 24 Parganas">South 24 Parganas</option>
+            <option value="Howrah">Howrah</option>
+            <option value="Hooghly">Hooghly</option>
+            <option value="Purba Medinipur">Purba Medinipur</option>
+            <option value="Paschim Medinipur">Paschim Medinipur</option>
+            <option value="Jhargram">Jhargram</option>
+            <option value="Purulia">Purulia</option>
+            <option value="Bankura">Bankura</option>
+            <option value="Purba Bardhaman">Purba Bardhaman</option>
+            <option value="Paschim Bardhaman">Paschim Bardhaman</option>
+            <option value="Birbhum">Birbhum</option>
+            <option value="Kolkata">Kolkata</option>
+          </select>
+        </div>
+
+        <!-- Dropdown D: Format Type -->
+        <div>
+          <label class="text-[10px] text-slate-400 block mb-1">Document Format Type</label>
+          <select id="docFormatType" required class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-slate-200">
+            <option value="Application Model (A4)">Application Model (A4)</option>
+            <option value="Legal Declaration / NOC">Legal Declaration / NOC</option>
+            <option value="Self-Declaration Affidavit">Self-Declaration Affidavit</option>
+            <option value="Official Correction Proforma">Official Correction Proforma</option>
+            <option value="Verification Certificate">Verification Certificate</option>
+          </select>
+        </div>
+
+        <!-- Dropdown E: Language -->
+        <div>
+          <label class="text-[10px] text-slate-400 block mb-1">Language / Medium</label>
+          <select id="docLang" required class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-slate-200">
+            <option value="English">English</option>
+            <option value="English / Bengali">English / Bengali (Bilingual)</option>
+            <option value="Bengali">Bengali</option>
+          </select>
+        </div>
+
+        <!-- PDF Upload -->
+        <div>
+          <label class="text-[10px] text-slate-400 block mb-1">Select A4 PDF Document</label>
           <input 
             id="docFile" 
             type="file" 
             accept="application/pdf" 
             required 
-            class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2 text-xs text-slate-400"
+            class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2 text-slate-400"
           />
         </div>
 
         <textarea 
           id="docDesc" 
           rows="3" 
-          placeholder="Document description, requirements, or guidelines for citizens..." 
-          class="sm:col-span-2 bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-xs focus:outline-none focus:border-indigo-500"
+          placeholder="Official guidelines, usage notes, and required attachments for citizens..." 
+          class="sm:col-span-3 bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-white focus:outline-none focus:border-indigo-500"
         ></textarea>
 
-        <button type="submit" id="btnDoc" class="sm:col-span-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 rounded-xl transition text-xs shadow-md">
-          Save & Publish PDF Format
+        <button type="submit" id="btnDoc" class="sm:col-span-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 rounded-xl transition shadow-md">
+          Save & Publish Official PDF Format
         </button>
       </form>
     </div>
@@ -190,7 +303,7 @@
     <!-- SECTION D: MANAGE & REMOVE PDF FORMATS -->
     <div class="glass border border-slate-800 p-5 rounded-2xl">
       <h2 class="text-xs font-bold text-white uppercase tracking-wider mb-3 flex items-center justify-between">
-        <span>Uploaded PDF Formats Catalog</span>
+        <span>Uploaded Formats Database</span>
         <span id="docCount" class="text-slate-400 font-normal">0 Total</span>
       </h2>
       <div id="adminDocsList" class="space-y-2"></div>
@@ -206,6 +319,13 @@
     const FILE_PATH = "portal-data.json";
 
     let state = { ticker: "", notices: [], documents: [] };
+
+    function togglePasswordVisibility() {
+      const f = document.getElementById("inPassword");
+      const icon = document.getElementById("eyeIcon");
+      if (f.type === 'password') { f.type = 'text'; icon.className = 'fa-solid fa-eye-slash text-xs'; }
+      else { f.type = 'password'; icon.className = 'fa-solid fa-eye text-xs'; }
+    }
 
     function checkAuthSession() {
       if (sessionStorage.getItem("ADMIN_AUTHORIZED") === "YES") {
@@ -239,13 +359,8 @@
       location.reload();
     }
 
-    function utoa(str) {
-      return window.btoa(unescape(encodeURIComponent(str)));
-    }
-
-    function atou(str) {
-      return decodeURIComponent(escape(window.atob(str)));
-    }
+    function utoa(str) { return window.btoa(unescape(encodeURIComponent(str))); }
+    function atou(str) { return decodeURIComponent(escape(window.atob(str))); }
 
     async function fetchFromRepo() {
       const token = localStorage.getItem("GH_SYNC_TOKEN");
@@ -281,10 +396,7 @@
             "Accept": "application/vnd.github.v3+json"
           }
         });
-        if (getRes.ok) {
-          const getData = await getRes.json();
-          freshSha = getData.sha;
-        }
+        if (getRes.ok) freshSha = (await getRes.json()).sha;
       } catch (e) {
         console.error("Could not obtain SHA:", e);
       }
@@ -322,13 +434,13 @@
     function renderDashboard() {
       document.getElementById("tickerInput").value = state.ticker || "";
 
-      // Notices
+      // Render Notices
       const nList = document.getElementById("adminNoticesList");
       nList.innerHTML = "";
       const notices = state.notices || [];
 
       if (notices.length === 0) {
-        nList.innerHTML = `<p class="text-xs text-slate-500">No active notices.</p>`;
+        nList.innerHTML = `<p class="text-xs text-slate-500">No active circulars.</p>`;
       } else {
         notices.forEach((n, idx) => {
           const row = document.createElement("div");
@@ -336,7 +448,7 @@
           row.innerHTML = `
             <div>
               <p class="font-bold text-white">${escapeSafe(n.title)}</p>
-              <p class="text-[10px] text-slate-400">${n.date} • ${escapeSafe(n.fileName || 'No attachment')}</p>
+              <p class="text-[10px] text-slate-400">${n.date} • ${escapeSafe(n.department)} • ${escapeSafe(n.district || 'All Districts')} • ${escapeSafe(n.fileName || 'No PDF')}</p>
             </div>
             <button onclick="removeNotice(${idx})" class="text-red-400 hover:text-red-300 px-2.5 py-1 bg-red-950/40 border border-red-800/80 rounded-lg">
               <i class="fa-solid fa-trash-can"></i> Delete
@@ -346,7 +458,7 @@
         });
       }
 
-      // Documents
+      // Render Documents
       const dList = document.getElementById("adminDocsList");
       dList.innerHTML = "";
       const docs = state.documents || [];
@@ -361,7 +473,7 @@
           row.innerHTML = `
             <div>
               <p class="font-bold text-white">${escapeSafe(d.title)}</p>
-              <p class="text-[10px] text-slate-400">${escapeSafe(d.category)} • ${escapeSafe(d.fileName)}</p>
+              <p class="text-[10px] text-slate-400">${escapeSafe(d.department)} • ${escapeSafe(d.district || 'All')} • ${escapeSafe(d.formatType || 'A4')} • ${escapeSafe(d.language || 'English')} • ${escapeSafe(d.fileName)}</p>
             </div>
             <button onclick="removeDocument(${idx})" class="text-red-400 hover:text-red-300 px-2.5 py-1 bg-red-950/40 border border-red-800/80 rounded-lg">
               <i class="fa-solid fa-trash-can"></i> Delete
@@ -382,6 +494,8 @@
       e.preventDefault();
       const btn = document.getElementById("btnNotice");
       const title = document.getElementById("noticeTitle").value.trim();
+      const department = document.getElementById("noticeDept").value;
+      const district = document.getElementById("noticeDistrict").value;
       const file = document.getElementById("noticeFile").files[0];
 
       btn.disabled = true;
@@ -392,6 +506,8 @@
         state.notices.unshift({
           id: "not_" + Date.now(),
           title,
+          department,
+          district,
           date: new Date().toISOString().slice(0, 10),
           fileUrl,
           fileName
@@ -399,10 +515,10 @@
 
         const ok = await commitData(`Published notice: ${title}`);
         btn.disabled = false;
-        btn.innerText = "Publish Notice";
+        btn.innerText = "Publish Official Notice";
         if (ok) {
           e.target.reset();
-          alert("Notice successfully published on live website!");
+          alert("Official circular successfully published!");
         }
       };
 
@@ -418,7 +534,7 @@
     async function removeNotice(idx) {
       if (confirm("Delete this notice permanently?")) {
         state.notices.splice(idx, 1);
-        const ok = await commitData("Deleted notice from portal");
+        const ok = await commitData("Deleted circular from portal");
         if (ok) alert("Notice deleted from live portal.");
       }
     }
@@ -429,6 +545,10 @@
       const file = document.getElementById("docFile").files[0];
       const title = document.getElementById("docTitle").value.trim();
       const category = document.getElementById("docCategory").value;
+      const department = document.getElementById("docDept").value;
+      const district = document.getElementById("docDistrict").value;
+      const formatType = document.getElementById("docFormatType").value;
+      const language = document.getElementById("docLang").value;
       const description = document.getElementById("docDesc").value.trim();
 
       if (!file) return;
@@ -443,6 +563,10 @@
           id: "doc_" + Date.now(),
           title,
           category,
+          department,
+          district,
+          formatType,
+          language,
           description,
           fileName: file.name,
           fileUrl: evt.target.result,
@@ -451,10 +575,10 @@
 
         const ok = await commitData(`Added PDF Format: ${title}`);
         btn.disabled = false;
-        btn.innerText = "Save & Publish PDF Format";
+        btn.innerText = "Save & Publish Official PDF Format";
         if (ok) {
           e.target.reset();
-          alert("Important PDF Format successfully uploaded! Available for all citizens to download.");
+          alert("Official PDF Format published! Visible globally.");
         }
       };
       reader.readAsDataURL(file);

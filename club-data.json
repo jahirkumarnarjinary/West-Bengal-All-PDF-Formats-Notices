@@ -1,7 +1,79 @@
 {
-  "settings": {},
-  "notices": [],
-  "members": [],
-  "players": [],
-  "applications": []
+  "ticker": "Official West Bengal Administrative Circulars & Verified PDF Formats Repository. Multi-department filter and verified download services active.",
+  "notices": [
+    {
+      "id": "not_wb_101",
+      "title": "Government of West Bengal: Advisory on Digital Attestation & Online Panchayat Record Verification",
+      "department": "Panchayat & Rural Development (WBPRD)",
+      "district": "All Districts",
+      "date": "2026-10-01",
+      "source": "Official WB Gov Circular",
+      "fileUrl": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+      "fileName": "WB_Panchayat_Digital_Advisory_2026.pdf"
+    },
+    {
+      "id": "not_wb_102",
+      "title": "Finance Department (Audit Branch): Streamlined Guidelines for Commercial Rent NOC Submissions",
+      "department": "Finance Department, Govt. of WB",
+      "district": "All Districts",
+      "date": "2026-09-28",
+      "source": "Official WB Gazette",
+      "fileUrl": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+      "fileName": "Finance_Dept_Audit_Circular_892.pdf"
+    }
+  ],
+  "documents": [
+    {
+      "id": "doc_wb_201",
+      "title": "Standardized Gram Panchayat Verification Application Form",
+      "department": "Panchayat & Rural Development",
+      "category": "Panchayat & Rural",
+      "district": "Alipurduar",
+      "formatType": "Application Model (A4)",
+      "language": "English / Bengali",
+      "description": "Prescribed single-page A4 application format for residency verification, birth record digitization, and Gram Panchayat office record validation.",
+      "fileName": "WB_Panchayat_Verification_Application.pdf",
+      "fileUrl": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+      "uploadDate": "2026-09-30"
+    },
+    {
+      "id": "doc_wb_202",
+      "title": "Commercial Business Registration Landlord No-Objection Certificate (NOC)",
+      "department": "Commercial Taxes & Revenue",
+      "category": "Commercial & Revenue",
+      "district": "All Districts",
+      "formatType": "Legal Declaration / NOC",
+      "language": "English",
+      "description": "Standardized legal declaration format by property owner granting permission for commercial trade license & business address registration.",
+      "fileName": "WB_Commercial_Trade_NOC_Format.pdf",
+      "fileUrl": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+      "uploadDate": "2026-09-29"
+    },
+    {
+      "id": "doc_wb_203",
+      "title": "Application for Correction & Digitization of Vital Statistics Records",
+      "department": "Health & Municipal Affairs",
+      "category": "Certificates & Verification",
+      "district": "Jalpaiguri",
+      "formatType": "Official Correction Proforma",
+      "language": "English / Bengali",
+      "description": "Standard form for digital registration requests and correction of non-digitized historical register entries in local administrative bodies.",
+      "fileName": "Vital_Records_Digitization_Form.pdf",
+      "fileUrl": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+      "uploadDate": "2026-09-27"
+    },
+    {
+      "id": "doc_wb_204",
+      "title": "Bilingual Self-Declaration Affidavit for Local Identity & Domicile",
+      "department": "Home & Administrative Reforms",
+      "category": "General Administration",
+      "district": "All Districts",
+      "formatType": "Self-Declaration Affidavit",
+      "language": "English / Bengali",
+      "description": "Accepted standard bilingual self-declaration format across sub-divisional and block offices for domicile authentication.",
+      "fileName": "WB_Domicile_Self_Declaration_Format.pdf",
+      "fileUrl": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+      "uploadDate": "2026-09-25"
+    }
+  ]
 }
